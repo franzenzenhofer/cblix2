@@ -26,7 +26,10 @@ export class App {
     this.settings = config.settings;
     
     // Initialize managers
-    this.gameEngine = new GameEngine();
+    this.gameEngine = new GameEngine({
+      colors: ["#F28B82","#CE93D8","#90CAF9","#A5D6A7","#FFCC80","#F48FB1","#80DEEA"],
+      settings: this.settings
+    });
     this.uiManager = new UIManager(this.container);
     this.audioManager = new AudioManager(this.settings.soundEnabled, this.settings.musicEnabled);
     this.themeManager = new ThemeManager(this.settings.theme);
@@ -88,10 +91,10 @@ export class App {
   
   private showTutorial(): void {
     // TODO: Implement tutorial
-    console.log('Tutorial not yet implemented');
+    this.uiManager.showNotification('Tutorial not yet implemented', 'info');
   }
   
-  private handleGameOver(victory: boolean, score: number): void {
+  private handleGameOver(victory: boolean, _score: number): void {
     if (victory) {
       this.audioManager.playSound('victory');
       // TODO: Show victory screen with confetti
@@ -113,14 +116,14 @@ export class App {
     localStorage.setItem('cblix2_settings', JSON.stringify(newSettings));
     
     // Return to start screen
-    this.showStartScreen();
+    void this.showStartScreen();
   }
   
   private setupEventListeners(): void {
     // Handle keyboard shortcuts
     document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'Escape' && this.currentScreen !== 'start') {
-        this.showStartScreen();
+        void this.showStartScreen();
       }
     });
     

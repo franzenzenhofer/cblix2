@@ -22,8 +22,8 @@ export class ThemeManager {
   }
   
   private isDarkMode(): boolean {
-    if (this.theme === 'dark') return true;
-    if (this.theme === 'light') return false;
+    if (this.theme === 'dark') {return true;}
+    if (this.theme === 'light') {return false;}
     
     // Auto mode
     return window.matchMedia('(prefers-color-scheme: dark)').matches;

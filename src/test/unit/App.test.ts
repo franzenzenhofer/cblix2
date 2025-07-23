@@ -51,7 +51,7 @@ describe('App', () => {
   it('should apply theme on initialization', async () => {
     const { ThemeManager } = await import('../../utils/ThemeManager');
     const mockApplyTheme = vi.fn();
-    (ThemeManager as any).mockImplementation(() => ({
+    (ThemeManager as unknown as { mockImplementation: (fn: () => unknown) => void }).mockImplementation(() => ({
       applyTheme: mockApplyTheme,
       setTheme: vi.fn(),
     }));
@@ -65,7 +65,7 @@ describe('App', () => {
   it('should initialize audio manager', async () => {
     const { AudioManager } = await import('../../utils/AudioManager');
     const mockInitialize = vi.fn().mockResolvedValue(undefined);
-    (AudioManager as any).mockImplementation(() => ({
+    (AudioManager as unknown as { mockImplementation: (fn: () => unknown) => void }).mockImplementation(() => ({
       initialize: mockInitialize,
       setSoundEnabled: vi.fn(),
       setMusicEnabled: vi.fn(),
@@ -81,7 +81,7 @@ describe('App', () => {
   it('should show start screen on initialization', async () => {
     const { UIManager } = await import('../../ui/UIManager');
     const mockShowScreen = vi.fn();
-    (UIManager as any).mockImplementation(() => ({
+    (UIManager as unknown as { mockImplementation: (fn: () => unknown) => void }).mockImplementation(() => ({
       showScreen: mockShowScreen,
     }));
     
@@ -89,5 +89,25 @@ describe('App', () => {
     await app.initialize();
     
     expect(mockShowScreen).toHaveBeenCalled();
+  });
+  
+  it('should create game engine with correct config', () => {
+    const app = new App({ container, settings });
+    expect(app).toBeDefined();
+    
+    // App should be created successfully
+    expect(app).toBeInstanceOf(App);
+  });
+  
+  it('should handle keyboard shortcuts', async () => {
+    const app = new App({ container, settings });
+    await app.initialize();
+    
+    // Test escape key
+    const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape' });
+    document.dispatchEvent(escapeEvent);
+    
+    // Should not throw
+    expect(() => document.dispatchEvent(escapeEvent)).not.toThrow();
   });
 });

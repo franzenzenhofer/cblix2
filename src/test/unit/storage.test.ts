@@ -20,7 +20,7 @@ describe('Storage utilities', () => {
   
   describe('loadGameSettings', () => {
     it('should return default settings when no saved settings exist', async () => {
-      (localStorage.getItem as any).mockReturnValue(null);
+      (localStorage.getItem as ReturnType<typeof vi.fn>).mockReturnValue(null);
       
       const settings = await loadGameSettings();
       
@@ -49,7 +49,7 @@ describe('Storage utilities', () => {
         language: 'de',
       };
       
-      (localStorage.getItem as any).mockReturnValue(JSON.stringify(savedSettings));
+      (localStorage.getItem as ReturnType<typeof vi.fn>).mockReturnValue(JSON.stringify(savedSettings));
       
       const settings = await loadGameSettings();
       
@@ -60,7 +60,7 @@ describe('Storage utilities', () => {
     });
     
     it('should return default settings when localStorage contains invalid JSON', async () => {
-      (localStorage.getItem as any).mockReturnValue('invalid json');
+      (localStorage.getItem as ReturnType<typeof vi.fn>).mockReturnValue('invalid json');
       
       const consoleSpy = vi.spyOn(console, 'warn');
       const settings = await loadGameSettings();
@@ -111,7 +111,7 @@ describe('Storage utilities', () => {
       };
       
       // Mock localStorage.setItem to throw an error
-      (localStorage.setItem as any).mockImplementation(() => {
+      (localStorage.setItem as ReturnType<typeof vi.fn>).mockImplementation(() => {
         throw new Error('Storage quota exceeded');
       });
       

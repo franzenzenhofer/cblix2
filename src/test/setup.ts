@@ -21,7 +21,7 @@ global.IntersectionObserver = class IntersectionObserver {
   disconnect() {}
   observe() {}
   unobserve() {}
-} as any;
+} as unknown as typeof IntersectionObserver;
 
 // Mock ResizeObserver
 global.ResizeObserver = class ResizeObserver {
@@ -29,10 +29,11 @@ global.ResizeObserver = class ResizeObserver {
   disconnect() {}
   observe() {}
   unobserve() {}
-} as any;
+} as unknown as typeof ResizeObserver;
 
 // Mock canvas
-HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
+HTMLCanvasElement.prototype.getContext = vi.fn(function() {
+  return {
   fillRect: vi.fn(),
   clearRect: vi.fn(),
   getImageData: vi.fn(),
@@ -67,14 +68,15 @@ HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
   createLinearGradient: vi.fn(),
   createRadialGradient: vi.fn(),
   createPattern: vi.fn(),
-})) as any;
+};
+}) as unknown as typeof HTMLCanvasElement.prototype.getContext;
 
 // Mock Audio
 global.Audio = class Audio {
   play() { return Promise.resolve(); }
   pause() {}
   addEventListener() {}
-} as any;
+} as unknown as typeof Audio;
 
 // Mock localStorage
 const localStorageMock = {
@@ -83,7 +85,7 @@ const localStorageMock = {
   removeItem: vi.fn(),
   clear: vi.fn(),
 };
-global.localStorage = localStorageMock as any;
+global.localStorage = localStorageMock as unknown as Storage;
 
 // Mock performance.now
 global.performance.now = vi.fn(() => Date.now());

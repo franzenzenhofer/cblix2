@@ -4,7 +4,7 @@ interface Screen {
 
 export class UIManager {
   private container: HTMLElement;
-  private currentScreen: Screen | null = null;
+  // private currentScreen: Screen | null = null; // Will be used for screen transitions
   
   constructor(container: HTMLElement) {
     this.container = container;
@@ -15,7 +15,7 @@ export class UIManager {
     this.container.innerHTML = '';
     
     // Add new screen
-    this.currentScreen = screen;
+    // this.currentScreen = screen; // Will be used for screen transitions
     const element = screen.getElement();
     element.style.opacity = '0';
     this.container.appendChild(element);
@@ -29,6 +29,9 @@ export class UIManager {
   
   showNotification(message: string, type: 'success' | 'error' | 'info' = 'info'): void {
     // TODO: Implement notification system
-    console.log(`[${type}] ${message}`);
+    if (type === 'error') {
+      console.error(message);
+    }
+    // Will implement visual notifications later
   }
 }

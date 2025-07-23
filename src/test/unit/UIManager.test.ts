@@ -79,19 +79,22 @@ describe('UIManager', () => {
     });
   });
   
-  it('should show notification (console log)', () => {
-    const consoleSpy = vi.spyOn(console, 'log');
+  it('should show notification (console error for error type)', () => {
+    const consoleSpy = vi.spyOn(console, 'error');
     
-    manager.showNotification('Test message', 'success');
+    manager.showNotification('Test message', 'error');
     
-    expect(consoleSpy).toHaveBeenCalledWith('[success] Test message');
+    expect(consoleSpy).toHaveBeenCalledWith('Test message');
   });
   
-  it('should show notification with default type', () => {
-    const consoleSpy = vi.spyOn(console, 'log');
+  it('should not log for non-error notifications', () => {
+    const consoleLogSpy = vi.spyOn(console, 'log');
+    const consoleErrorSpy = vi.spyOn(console, 'error');
     
+    manager.showNotification('Test message', 'success');
     manager.showNotification('Test message');
     
-    expect(consoleSpy).toHaveBeenCalledWith('[info] Test message');
+    expect(consoleLogSpy).not.toHaveBeenCalled();
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
   });
 });

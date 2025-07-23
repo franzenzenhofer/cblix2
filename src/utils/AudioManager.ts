@@ -9,19 +9,19 @@ export class AudioManager {
   
   async initialize(): Promise<void> {
     // TODO: Load audio assets
-    console.log('Audio manager initialized');
+    // Audio manager initialized
   }
   
-  playSound(soundName: string): void {
-    if (!this.soundEnabled) return;
+  playSound(_soundName: string): void {
+    if (!this.soundEnabled) {return;}
     // TODO: Implement sound playback
-    console.log('Playing sound:', soundName);
+    // Playing sound: _soundName
   }
   
-  playMusic(musicName: string): void {
-    if (!this.musicEnabled) return;
+  playMusic(_musicName: string): void {
+    if (!this.musicEnabled) {return;}
     // TODO: Implement music playback
-    console.log('Playing music:', musicName);
+    // Playing music: _musicName
   }
   
   setSoundEnabled(enabled: boolean): void {

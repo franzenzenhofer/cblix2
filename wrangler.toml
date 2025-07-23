@@ -1,0 +1,15 @@
+name = "cblix2"
+compatibility_date = "2025-01-01"
+
+[site]
+bucket = "./dist"
+
+[build]
+command = "npm run build:only"
+
+[env.production]
+route = "cblix2.franzai.com/*"
+
+[[routes]]
+pattern = "cblix2.franzai.com/*"
+custom_domain = true

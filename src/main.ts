@@ -36,9 +36,7 @@ async function main(): Promise<void> {
     
     await app.initialize();
     
-    // Log version info
-    console.log(`🎮 CBLIX2 - The Best App Ever v${window.CBLIX2_VERSION || import.meta.env.VITE_APP_VERSION}`);
-    console.log(`📅 Build Date: ${window.CBLIX2_BUILD_DATE || import.meta.env.VITE_BUILD_DATE}`);
+    // Version info available via window.CBLIX2_VERSION and window.CBLIX2_BUILD_DATE
     
   } catch (error) {
     console.error('Failed to initialize CBLIX2:', error);

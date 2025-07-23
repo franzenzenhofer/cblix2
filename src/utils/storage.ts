@@ -1,7 +1,7 @@
-import type { GameSettings } from '@types';
+import type { GameSettings } from '../types';
 
 const SETTINGS_KEY = 'cblix2_settings';
-const SAVE_DATA_KEY = 'cblix2_save';
+// const SAVE_DATA_KEY = 'cblix2_save'; // Will be used for save/load feature
 
 export async function loadGameSettings(): Promise<GameSettings> {
   try {

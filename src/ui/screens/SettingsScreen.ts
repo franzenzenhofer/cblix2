@@ -1,4 +1,4 @@
-import type { GameSettings } from '@types';
+import type { GameSettings } from '../../types';
 
 interface SettingsScreenConfig {
   settings: GameSettings;
@@ -84,7 +84,7 @@ export class SettingsScreen {
   
   private saveSettings(): void {
     const settings: GameSettings = {
-      theme: (this.container.querySelector('#theme-select') as HTMLSelectElement).value as any,
+      theme: (this.container.querySelector('#theme-select') as HTMLSelectElement).value as 'light' | 'dark' | 'auto',
       soundEnabled: (this.container.querySelector('#sound-checkbox') as HTMLInputElement).checked,
       musicEnabled: (this.container.querySelector('#music-checkbox') as HTMLInputElement).checked,
       showHints: (this.container.querySelector('#hints-checkbox') as HTMLInputElement).checked,
