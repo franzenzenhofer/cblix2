@@ -1,0 +1,59 @@
+{
+  "name": "cblix2",
+  "version": "2.0.0",
+  "description": "CBLIX2 - The Best App Ever - An enhanced puzzle game with new tile types and modern features",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run typecheck && npm run lint && npm run test:coverage && vite build",
+    "build:only": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx --max-warnings 0",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
+    "precommit": "npm run typecheck && npm run lint && npm run test:coverage",
+    "version": "npm run build && git add -A",
+    "postversion": "git push && git push --tags"
+  },
+  "keywords": [
+    "game",
+    "puzzle",
+    "typescript",
+    "vite",
+    "best-app-ever"
+  ],
+  "author": "Franz Enzenhofer",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
+    "eslint": "^9.31.0",
+    "jsdom": "^26.0.0",
+    "playwright": "^1.54.1",
+    "prettier": "^3.6.2",
+    "terser": "^5.38.0",
+    "typescript": "^5.8.3",
+    "vite": "^5.4.0",
+    "vite-plugin-pwa": "^0.21.0",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "howler": "^2.2.4",
+    "particles.js": "^2.0.0",
+    "zustand": "^5.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
