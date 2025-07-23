@@ -188,6 +188,7 @@ export interface GameSettings {
   showHints: boolean;
   animationSpeed: 'slow' | 'normal' | 'fast';
   language: string;
+  analyticsEnabled?: boolean;
 }
 
 // Plugin system types

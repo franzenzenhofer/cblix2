@@ -20,6 +20,8 @@ const buildDate = new Date().toISOString();
 
 export default defineConfig({
   base: '/',
+  root: '.',
+  publicDir: 'public',
   define: {
     'import.meta.env.VITE_APP_VERSION': JSON.stringify(version),
     'import.meta.env.VITE_BUILD_DATE': JSON.stringify(buildDate),
@@ -29,13 +31,7 @@ export default defineConfig({
     sourcemap: true,
     minify: 'terser',
     rollupOptions: {
-      output: {
-        manualChunks: {
-          'game-engine': ['./src/engine/index.ts'],
-          'ui-components': ['./src/ui/index.ts'],
-          'tile-plugins': ['./src/plugins/index.ts']
-        }
-      }
+      input: './public/index.html',
     }
   },
   resolve: {

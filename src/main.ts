@@ -1,5 +1,6 @@
 import './styles/global.css';
 import './styles/themes.css';
+import './styles/screens.css';
 import { App } from './App';
 import { initializeServiceWorker } from './utils/pwa';
 import { loadGameSettings } from './utils/storage';

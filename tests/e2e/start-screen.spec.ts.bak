@@ -1,0 +1,52 @@
+import { test, expect } from '@playwright/test';
+
+test.describe('Start Screen', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+  
+  test('should display the game title and tagline', async ({ page }) => {
+    await expect(page.locator('.game-title')).toContainText('CBLIX2');
+    await expect(page.locator('.tagline')).toContainText('✨ The Best App Ever ✨');
+    await expect(page.locator('.author')).toContainText('Enhanced by Franz Enzenhofer');
+  });
+  
+  test('should display version and build date', async ({ page }) => {
+    await expect(page.locator('.version')).toBeVisible();
+    await expect(page.locator('.build-date')).toBeVisible();
+    await expect(page.locator('.version')).toContainText('Version');
+    await expect(page.locator('.build-date')).toContainText('Built on');
+  });
+  
+  test('should have all main menu buttons', async ({ page }) => {
+    await expect(page.locator('#start-btn')).toBeVisible();
+    await expect(page.locator('#tutorial-btn')).toBeVisible();
+    await expect(page.locator('#settings-btn')).toBeVisible();
+  });
+  
+  test('should display new features list', async ({ page }) => {
+    await expect(page.locator('.features-list')).toBeVisible();
+    await expect(page.locator('.features-list')).toContainText('7 New Tile Types');
+    await expect(page.locator('.features-list')).toContainText('Modern UI Design');
+    await expect(page.locator('.features-list')).toContainText('Dark/Light Themes');
+    await expect(page.locator('.features-list')).toContainText('100% Test Coverage');
+    await expect(page.locator('.features-list')).toContainText('Blazing Fast Performance');
+  });
+  
+  test('should navigate to game screen when play button is clicked', async ({ page }) => {
+    await page.click('#start-btn');
+    await expect(page.locator('.game-screen')).toBeVisible();
+  });
+  
+  test('should navigate to settings screen when settings button is clicked', async ({ page }) => {
+    await page.click('#settings-btn');
+    await expect(page.locator('.settings-screen')).toBeVisible();
+  });
+  
+  test('should be responsive on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await expect(page.locator('.start-screen')).toBeVisible();
+    await expect(page.locator('.game-title')).toBeVisible();
+    await expect(page.locator('#start-btn')).toBeVisible();
+  });
+});
