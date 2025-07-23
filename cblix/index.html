@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<title>CBLIX - The Game - Codedirected by Franz Enzenhofer</title>
+<link rel="stylesheet" href="s.css?foo=bar1gfgdgddddgdgdfgfgfdfgdgbssestcsddgseverdggeste23">
+
+<meta name="description" content="CBLIX - A fun and challenging color-filling game by Franz Enzenhofer. Connect the corners by filling colors strategically.">
+<link rel="canonical" href="https://cblix.franzai.com/">
+<meta property="og:title" content="CBLIX - The Game">
+<meta property="og:description" content="A fun and challenging color-filling game by Franz Enzenhofer. Connect the corners by filling colors strategically.">
+<meta property="og:url" content="https://cblix.franzai.com/">
+<meta property="og:image" content="https://cblix.franzai.com/preview.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="https://cblix.franzai.com/favicon.ico" type="image/x-icon">
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#00897b">
+
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="4" y="4" width="8" height="8" fill="#fff" opacity="0.8"/>
+        <rect x="8" y="8" width="8" height="8" fill="#fff" opacity="0.5"/>
+      </svg>
+      <span id="infoPanel">...</span>
+    </div>
+  </div>
+  <div>
+    <button id="resetBtn" aria-label="Reset">New Game</button>
+    <button id="reloadBtn" aria-label="Reload">↺</button>
+    <button id="muteBtn" aria-label="Sound">🔊</button>
+  </div>
+</div>
+
+<div class="game-area">
+  <div id="movesMessage"></div>
+  <canvas id="gameCanvas"></canvas>
+  <div class="color-bar" id="colorBar"></div>
+
+  <!-- Start overlay -->
+  <div class="overlay" id="startOverlay">
+    <div class="overlay-content">
+      <div class="logo-big">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="4" width="8" height="8" fill="#fff" opacity="0.9"/>
+          <rect x="8" y="8" width="8" height="8" fill="#fff" opacity="0.6"/>
+        </svg>
+        <h1>CBLIX by Franz Enzenhofer</h1>
+      </div>
+      <p>Fill the colors until the corners connect.</p>
+      <button id="startButton" aria-label="Start">▶</button>
+    </div>
+  </div>
+
+  <!-- End overlay with confetti container -->
+  <div class="overlay" id="endOverlay" style="display:none;">
+    <div class="confetti-container" id="confettiContainer"></div>
+    <div class="overlay-content">
+      <h1 id="endMessage"></h1>
+      <p id="endStats"></p>
+      <button id="endButton" aria-label="Continue"></button>
+    </div>
+  </div>
+
+  <!-- How-to overlay -->
+  <div class="overlay" id="howToOverlay" style="display:none;">
+    <div class="overlay-content">
+      <h1>How to Play</h1>
+      <p>
+        The goal is to connect the Start corner to the Goal corner within the allowed number of moves.<br/>
+        Pick colors from the bar below to flood the connected region.<br/>
+      </p>
+      <p>
+        <strong>╳</strong> = Not changeable<br/>
+        <strong>•</strong> = -1 move (penalty cell)<br/>
+        <strong>↺↻</strong> = Rotate board<br/>
+        <strong>⇵⇆</strong> = Flip board<br/>
+        <strong>∞</strong> = Invert color mapping
+      </p>
+      <button class="close-btn" aria-label="Close How To">Close</button>
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="overlay" id="loadingOverlay" style="display:none;">
+    <div class="overlay-content loading-content">
+      <div class="block-animation">
+        <div class="block-row">
+          <div class="block-cell"></div>
+          <div class="block-cell"></div>
+          <div class="block-cell"></div>
+        </div>
+        <div class="block-row">
+          <div class="block-cell"></div>
+          <div class="block-cell"></div>
+          <div class="block-cell"></div>
+        </div>
+        <div class="block-row">
+          <div class="block-cell"></div>
+          <div class="block-cell"></div>
+          <div class="block-cell"></div>
+        </div>
+      </div>
+      <p>Loading</p>
+    </div>
+  </div>
+
+  <!-- Tutorial hand overlay -->
+  <div class="tutorial-hand-overlay" id="tutorialHandOverlay" style="display:none;">
+    <div class="hand-icon">👆</div>
+  </div>
+</div>
+
+<footer>
+  CBLIX - by <a href="mailto:fe@f19n.com">Franz Enzenhofer</a> | <a href="#" id="howToLink" style="text-decoration:underline;">How to</a>
+</footer>
+
+<script type="module">
+  import './utils.js';
+  import './audio.js';
+  import './plugins/index.js';
+  import './main.js';
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log('Service Worker registered'))
+      .catch(err => console.error('SW registration failed:', err));
+  }
+</script>
+
+</body>
+</html>

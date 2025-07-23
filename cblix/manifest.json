@@ -1,0 +1,92 @@
+{
+  "name": "ColorBlocks",
+  "short_name": "ColorBlocks",
+  "description": "A fun and challenging color-filling game by Franz Enzenhofer.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#00897b",
+  "theme_color": "#00897b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/android-hdpi.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "icons/android-mdpi.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "icons/android-xhdpi.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "icons/android-xxhdpi.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "icons/android-xxxhdpi.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/ios-20pt@1x.png",
+      "type": "image/png",
+      "sizes": "20x20"
+    },
+    {
+      "src": "icons/ios-20pt@2x.png",
+      "type": "image/png",
+      "sizes": "40x40"
+    },
+    {
+      "src": "icons/ios-20pt@3x.png",
+      "type": "image/png",
+      "sizes": "60x60"
+    },
+    {
+      "src": "icons/ios-29pt@1x.png",
+      "type": "image/png",
+      "sizes": "29x29"
+    },
+    {
+      "src": "icons/ios-29pt@2x.png",
+      "type": "image/png",
+      "sizes": "58x58"
+    },
+    {
+      "src": "icons/ios-29pt@3x.png",
+      "type": "image/png",
+      "sizes": "87x87"
+    },
+    {
+      "src": "icons/ios-40pt@1x.png",
+      "type": "image/png",
+      "sizes": "40x40"
+    },
+    {
+      "src": "icons/ios-40pt@2x.png",
+      "type": "image/png",
+      "sizes": "80x80"
+    },
+    {
+      "src": "icons/ios-40pt@3x.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "icons/ios-60pt@2x.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "icons/ios-60pt@3x.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ]
+}
