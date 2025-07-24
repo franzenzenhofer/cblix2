@@ -1,6 +1,6 @@
 {
   "name": "cblix2",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "CBLIX2 - The Best App Ever - An enhanced puzzle game with new tile types and modern features",
   "main": "dist/index.js",
   "scripts": {
@@ -19,7 +19,8 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
     "precommit": "npm run typecheck && npm run lint && npm run test:coverage",
     "version": "npm run build && git add -A",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "deploy": "node deploy.js"
   },
   "keywords": [
     "game",
