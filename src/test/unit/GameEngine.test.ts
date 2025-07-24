@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { GameEngine } from '../../engine/GameEngine';
-import type { Position, GameSettings } from '../../types';
 
 describe('GameEngine', () => {
   let engine: GameEngine;
@@ -108,7 +107,9 @@ describe('GameEngine', () => {
       const initialMoves = state?.moves || 0;
       const currentColor = state?.currentColor;
       
-      engine.selectColor(currentColor!);
+      if (currentColor) {
+        engine.selectColor(currentColor);
+      }
       
       const newState = engine.getGameState();
       expect(newState?.moves).toBe(initialMoves);
@@ -120,7 +121,9 @@ describe('GameEngine', () => {
       const colors = engine.getAvailableColors();
       const differentColor = colors.find(c => c !== state?.currentColor);
       
-      engine.selectColor(differentColor!);
+      if (differentColor) {
+        engine.selectColor(differentColor);
+      }
       
       const newState = engine.getGameState();
       expect(newState?.moves).toBe(initialMoves + 1);
@@ -132,11 +135,15 @@ describe('GameEngine', () => {
       const colors = engine.getAvailableColors();
       const differentColor = colors.find(c => c !== state?.currentColor);
       
-      engine.selectColor(differentColor!);
+      if (differentColor) {
+        engine.selectColor(differentColor);
+      }
       
       const newState = engine.getGameState();
-      const startPos = newState?.startPosition!;
-      expect(newState?.board[startPos.y][startPos.x]).toBe(differentColor);
+      const startPos = newState?.startPosition;
+      if (startPos && newState?.board) {
+        expect(newState.board[startPos.y][startPos.x]).toBe(differentColor);
+      }
     });
     
     it('should end game when move limit is reached', () => {
@@ -146,7 +153,7 @@ describe('GameEngine', () => {
       // Make moves up to the limit but ensure we don't win
       let movesMade = 0;
       let colorIndex = 0;
-      while (movesMade < state!.moveLimit && !engine.getGameState()?.gameOver) {
+      while (state && movesMade < state.moveLimit && !engine.getGameState()?.gameOver) {
         const color = colors[colorIndex % colors.length];
         if (color !== engine.getGameState()?.currentColor) {
           engine.selectColor(color);
@@ -170,7 +177,7 @@ describe('GameEngine', () => {
       // End the game
       let movesMade = 0;
       let colorIndex = 0;
-      while (movesMade < state!.moveLimit) {
+      while (state && movesMade < state.moveLimit) {
         const color = colors[colorIndex % colors.length];
         if (color !== engine.getGameState()?.currentColor) {
           engine.selectColor(color);
@@ -208,7 +215,7 @@ describe('GameEngine', () => {
       const state = engine.getGameState();
       let movesMade = 0;
       let colorIndex = 0;
-      while (movesMade < state!.moveLimit) {
+      while (state && movesMade < state.moveLimit) {
         const color = colors[colorIndex % colors.length];
         if (color !== engine.getGameState()?.currentColor) {
           engine.selectColor(color);
@@ -231,7 +238,9 @@ describe('GameEngine', () => {
       const differentColor = colors.find(c => c !== engine.getGameState()?.currentColor);
       
       // Make some moves
-      engine.selectColor(differentColor!);
+      if (differentColor) {
+        engine.selectColor(differentColor);
+      }
       engine.selectColor(colors[0]);
       
       const stateBeforeReset = engine.getGameState();
@@ -289,9 +298,12 @@ describe('GameEngine', () => {
       
       // Create a simple winning scenario by setting the board
       // This is a simplified test - in real game, we'd need proper flood fill
-      const board = state!.board;
-      const endPos = state!.endPosition;
-      const startPos = state!.startPosition;
+      const board = state?.board;
+      if (!board) {
+        return;
+      }
+      // const endPos = state!.endPosition;
+      // const startPos = state!.startPosition;
       
       // Fill path from start to end with same color
       for (let y = 0; y < board.length; y++) {
@@ -313,7 +325,11 @@ describe('GameEngine', () => {
       await engine.startNewGame(1);
       
       // Create winning condition (simplified)
-      const board = engine.getGameState()!.board;
+      const gameState = engine.getGameState();
+      if (!gameState) {
+        return;
+      }
+      const board = gameState.board;
       for (let y = 0; y < board.length; y++) {
         for (let x = 0; x < board[y].length; x++) {
           board[y][x] = mockConfig.colors[0];

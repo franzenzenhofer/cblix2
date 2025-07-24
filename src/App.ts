@@ -5,6 +5,7 @@ import { ThemeManager } from './utils/ThemeManager';
 import { StartScreen } from './ui/screens/StartScreen';
 import { GameScreen } from './ui/screens/GameScreen';
 import { SettingsScreen } from './ui/screens/SettingsScreen';
+import { TutorialScreen } from './ui/screens/TutorialScreen';
 import type { GameSettings } from './types';
 
 interface AppConfig {
@@ -90,8 +91,14 @@ export class App {
   }
   
   private showTutorial(): void {
-    // TODO: Implement tutorial
-    this.uiManager.showNotification('Tutorial not yet implemented', 'info');
+    this.currentScreen = 'tutorial';
+    
+    const tutorialScreen = new TutorialScreen({
+      onBack: () => this.showStartScreen(),
+      onStartGame: () => this.startGame(),
+    });
+    
+    this.uiManager.showScreen(tutorialScreen);
   }
   
   private handleGameOver(victory: boolean, _score: number): void {

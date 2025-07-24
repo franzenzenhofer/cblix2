@@ -102,6 +102,9 @@ export class GameScreen {
     // Draw game board
     this.drawBoard(gameState);
     
+    // Update color palette
+    this.updateColorPalette();
+    
     // Show game over message if needed
     if (gameState.gameOver) {
       this.showGameOverMessage(gameState.won, gameState.score);
@@ -113,6 +116,14 @@ export class GameScreen {
     
     const board = gameState.board;
     const gridSize = board.length;
+    
+    // Make canvas responsive
+    const container = this.canvas.parentElement;
+    if (container) {
+      const maxSize = Math.min(container.clientWidth - 40, container.clientHeight - 40, 600);
+      this.cellSize = Math.floor((maxSize - 2 * this.padding) / gridSize);
+    }
+    
     const canvasSize = gridSize * this.cellSize + this.padding * 2;
     
     // Set canvas size

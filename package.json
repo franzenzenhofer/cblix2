@@ -1,12 +1,12 @@
 {
   "name": "cblix2",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "description": "CBLIX2 - The Best App Ever - An enhanced puzzle game with new tile types and modern features",
   "main": "dist/index.js",
   "scripts": {
     "dev": "vite",
     "build": "npm run typecheck && npm run lint && npm run test:coverage && vite build",
-    "build:only": "vite build",
+    "build:only": "vite build && node scripts/inject-version.js",
     "preview": "vite preview",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",

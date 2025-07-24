@@ -222,8 +222,8 @@ describe('Types', () => {
       type: TileType.MAGNETIC,
       name: 'Magnetic Tile',
       description: 'Attracts colors',
-      canPlaceAt: (pos, board) => pos.x >= 0 && pos.y >= 0,
-      blocksFloodFill: (cell, from, to) => false
+      canPlaceAt: (pos) => pos.x >= 0 && pos.y >= 0,
+      blocksFloodFill: () => false
     };
     
     expect(plugin.type).toBe(TileType.MAGNETIC);

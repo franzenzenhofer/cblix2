@@ -30,8 +30,15 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
     minify: 'terser',
+    // Add cache busting with content hash in filenames
     rollupOptions: {
       input: './public/index.html',
+      output: {
+        // Ensure unique filenames with content hash
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      }
     }
   },
   resolve: {

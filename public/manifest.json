@@ -51,12 +51,16 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["games", "puzzle"],
+  "categories": [
+    "games",
+    "puzzle"
+  ],
   "screenshots": [
     {
       "src": "/screenshots/game1.png",
       "sizes": "1280x720",
       "type": "image/png"
     }
-  ]
+  ],
+  "version": "2.0.4"
 }

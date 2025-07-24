@@ -265,7 +265,7 @@ describe('GameScreen', () => {
     });
     
     const canvas = screen.getElement().querySelector('#game-canvas') as HTMLCanvasElement;
-    const initialWidth = canvas.width;
+    // const initialWidth = canvas.width;
     
     // Trigger resize event
     window.dispatchEvent(new Event('resize'));
@@ -283,7 +283,7 @@ describe('GameScreen', () => {
     });
     
     // Get the destroy method if it exists
-    const destroy = (screen as any).destroy;
+    const destroy = (screen as unknown as {destroy?: () => void}).destroy;
     if (destroy) {
       destroy.call(screen);
       expect(rafSpy).toHaveBeenCalled();
