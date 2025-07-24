@@ -19,6 +19,15 @@ declare global {
 // Initialize the app
 async function main(): Promise<void> {
   try {
+    // Unregister any existing service workers to prevent caching issues
+    if ('serviceWorker' in navigator) {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      for (const registration of registrations) {
+        await registration.unregister();
+        console.log('Service worker unregistered:', registration.scope);
+      }
+    }
+    
     // Load saved settings
     const settings = await loadGameSettings();
     
@@ -27,8 +36,8 @@ async function main(): Promise<void> {
       await initializeAnalytics();
     }
     
-    // Initialize service worker for PWA
-    await initializeServiceWorker();
+    // Service worker disabled to prevent caching issues
+    // await initializeServiceWorker();
     
     // Create and mount the app
     const app = new App({

@@ -54,8 +54,8 @@ export class App {
     this.currentScreen = 'start';
     
     const startScreen = new StartScreen({
-      version: import.meta.env.VITE_APP_VERSION || '2.0.0',
-      buildDate: import.meta.env.VITE_BUILD_DATE || new Date().toISOString(),
+      version: window.CBLIX2_VERSION || import.meta.env.VITE_APP_VERSION || '2.0.0',
+      buildDate: window.CBLIX2_BUILD_DATE || import.meta.env.VITE_BUILD_DATE || new Date().toISOString(),
       onStart: () => this.startGame(),
       onSettings: () => this.showSettings(),
       onTutorial: () => this.showTutorial(),

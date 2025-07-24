@@ -1,6 +1,6 @@
 {
   "name": "cblix2",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "CBLIX2 - The Best App Ever - An enhanced puzzle game with new tile types and modern features",
   "main": "dist/index.js",
   "scripts": {

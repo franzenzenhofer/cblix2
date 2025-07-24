@@ -149,6 +149,15 @@ async function deploy() {
     const displayedVersion = await page.locator('.version').textContent().catch(() => 'NOT FOUND');
     log.info(`Displayed version: ${displayedVersion}`);
     
+    // Verify displayed version matches
+    if (!displayedVersion.includes(newVersion)) {
+      log.error(`VERSION MISMATCH IN UI!`);
+      log.error(`Expected: ${newVersion}`);
+      log.error(`Displayed: ${displayedVersion}`);
+      log.error(`This might be due to service worker caching`);
+      process.exit(1);
+    }
+    
     // Screenshot
     await page.screenshot({ path: 'deployment-verification.png', fullPage: true });
     log.success('Screenshot saved: deployment-verification.png');
